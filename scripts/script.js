@@ -1,3 +1,17 @@
+var foundPatterns = [];
+var darkPatternsNumber = 0;
+
+//listen for popup open action and then send found dark patterns
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+      console.log(sender.tab ?
+                  "from a content script:" + sender.tab.url :
+                  "from the extension");
+      if (request.requestType === "darkPatterns")
+        sendResponse({darkPatternsList: foundPatterns});
+    }
+  );
+
 setTimeout(() => {
     findInconsistenButtons(document.body);
   }, 1000)
@@ -31,6 +45,9 @@ function modifyButtonStyles(div) {
                 button.setAttribute("mode", latestMode);
             }
         }
+        
+        foundPatterns[darkPatternsNumber] = "Misdirection found in buttons"
+        darkPatternsNumber++;
         return true;
     }
     else return false;
