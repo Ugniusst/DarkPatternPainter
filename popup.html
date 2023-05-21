@@ -4,10 +4,44 @@
     <meta charset="UTF-8">
     <title>Dark Pattern Painter</title>
     <script src="scripts/popupbackground.js"></script>
+    <link rel="stylesheet" type="text/css" href="popup.css">
 </head>
 <body>
     <div style="width: 300px">
         <h1>Dark Pattern Painter</h1> <br>
+        <div id="patternsSettings">
+            <div class="option-line">
+                <span id="TrickyQuestionsLabel" class="DPLabel">Tricky questions</span>
+                <div id="TrickyQuestions"class="switch-toggle switch-3 switch-candy">
+
+                    <input id="off" name="trickyQuestions" type="radio" checked="" value="0"/>
+                    <label for="off" >Off</label>
+                
+                    <input id="detect" name="trickyQuestions" type="radio" checked="checked" value="1"/>
+                    <label for="detect" class="disabled" >Detect</label>
+                
+                    <input id="fix" name="trickyQuestions" type="radio" value="2"/>
+                    <label for="fix" >Fix</label>
+                
+                </div>
+            </div>
+            <br/><br/>
+            <div class="option-line">
+                <span id="MisdirectionLabel" class="DPLabel">Misdirection</span>
+                <div id="Misdirection"class="switch-toggle switch-3 switch-candy">
+
+                    <input id="off" name="misdirection" type="radio" checked="" value="0"/>
+                    <label for="off" >Off</label>
+                
+                    <input id="detect" name="misdirection" type="radio" checked="checked" value="1"/>
+                    <label for="detect" class="disabled" >Detect</label>
+                
+                    <input id="fix" name="misdirection" type="radio" value="2"/>
+                    <label for="fix" >Fix</label>
+                
+                </div>
+            </div>
+        </div>
         <h2>Found dark patterns:</h2>
         <div id="foundBox"></div>
     </div>
