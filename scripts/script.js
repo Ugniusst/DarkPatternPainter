@@ -34,7 +34,10 @@ setTimeout(() => {
     else if(darkPatternsOptions.misdirection == 2)
         modifyButtonStyles(document.body);
 
-    findTrickyQuestions(document.body);
+    if(darkPatternsOptions.trickyQuestions == 1)
+        findTrickyQuestions(document.body);
+    else if(darkPatternsOptions.trickyQuestions == 2)
+        modifyTrickyQuestions(document.body);
     
 
   }, 1000)
