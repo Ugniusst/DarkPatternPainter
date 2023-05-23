@@ -7,6 +7,7 @@
         "js": ["scripts/thirdParty/jquery.min.js",
         "scripts/darkPatterns/misdirection.js",
         "scripts/darkPatterns/trickyQuestion.js",
+        "scripts/darkPatterns/privacyZuckering.js",
          "scripts/script.js"],
         "matches": ["https://*/*", "file:///*/*"]
     }],

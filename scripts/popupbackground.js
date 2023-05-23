@@ -39,12 +39,13 @@ function loaded(){
 }
 
 function restoreOptions() {
-  console.log("restoreOptions");
   chrome.storage.local.get(
-    ["trickyQuestions", "misdirection"]
+    ["trickyQuestions", "misdirection", "privacyZuckering"]
   , function(items) {
+    console.log(items);
     if(items.misdirection)document.querySelector('input[name="trickyQuestions"][value="' + items.trickyQuestions + '"]').checked = true;
     if(items.misdirection)document.querySelector('input[name="misdirection"][value="' + items.misdirection + '"]').checked = true;
+    if(items.privacyZuckering)document.querySelector('input[name="privacyZuckering"][value="' + items.privacyZuckering + '"]').checked = true;
   });
 }
 
@@ -52,6 +53,6 @@ function saveOptions() {
   chrome.storage.local.set({
     "trickyQuestions": document.querySelector('input[name="trickyQuestions"]:checked').value,
     "misdirection": document.querySelector('input[name="misdirection"]:checked').value,
+    "privacyZuckering": document.querySelector('input[name="privacyZuckering"]:checked').value
   });
-  console.log(document.querySelector('input[name="misdirection"]:checked').value);
 }
