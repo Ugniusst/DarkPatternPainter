@@ -1,15 +1,20 @@
 const STYLE = document.createElement('style');
 STYLE.innerHTML = `.closePZ {
-    color: #000;
+    color: #eb5e34;
     float: right;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 1em;
     margin-top: -1em;
+  }
+
+  .closePZ > em {
+    font-weight: bold;
+    color: #000;
   }
   
   .closePZ:hover,
-  .closePZ:focus {
-    color: black;
+  .closePZ:focus,
+  em:hover {
+    color: gray;
     text-decoration: none;
   }`;
 
@@ -24,9 +29,9 @@ function modifyPrivacyZuckering(body) {
     var closebtns = body.getElementsByClassName("closePZ");
 
     for(closebtn of closebtns) {
-        closebtn.innerHTML = closebtn.innerHTML + " - <em>Close</em>";
+        closebtn.innerHTML = "<button>" + closebtn.innerHTML + "</button>";
         closebtn.onclick = (e) => {
-            var modal = e.srcElement.parentElement;
+            var modal = e.srcElement.parentElement.parentElement;
             modal.setAttribute("style", "display:none");
         }
     }
@@ -58,8 +63,9 @@ function findPrivacyZuckeringModal(body) {
                 if(modal.outerHTML.includes(action)) {
                     for(object of KEYWORDSOBJECTS) {
                         if(modal.outerHTML.includes(object) && !(modal.innerText.includes("NO") || modal.innerText.includes("Close")))  {
-                            divs[i].innerHTML = `<button class='closePZ'>Privacy Zuckering</button>` + divs[i].innerHTML;
-                            foundPatterns.push("Privacy Zuckering");
+                            foundPatterns.push("<b>Privacy Zuckering</b> found in modal containing: </br>" + divs[i].innerText.slice(0,45) +"...");
+                            divs[i].innerHTML = `<span class='closePZ'>--Privacy Zuckering--</span>` + divs[i].innerHTML;
+                            // divs[i].setAttribute("style", "border: 2px solid red;");
                             break;
                         }
                     }

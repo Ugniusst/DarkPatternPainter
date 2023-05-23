@@ -10,16 +10,12 @@ const darkPatternsOptions = {
 //listen for popup open action and then send found dark patterns
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-      console.log(sender.tab ?
-                  "from a content script:" + sender.tab.url :
-                  "from the extension");
       if (request.requestType === "darkPatterns")
         sendResponse({darkPatternsList: foundPatterns});
     }
   );
 
   function getOptions() {
-    console.log("getOptions");
     chrome.storage.local.get(
       ["trickyQuestions", "misdirection", "privacyZuckering"]
     , function(items) {

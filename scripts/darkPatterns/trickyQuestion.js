@@ -42,7 +42,7 @@ function findTrickyQuestions(body) {
     var [labels, inputs] = getInputLabels(body);
     labels.forEach(label => {
         if(checkIsTrickQuesiton(label.innerText)) {
-            foundPatterns.push("Tricky Questions found");
+            foundPatterns.push("<b>Tricky question</b> found in inputs containing: </br>" + label.innerText.slice(0,45) +"...");
             darkPatternsNumber++;
             markTrickQuestion(label);
         }
@@ -55,7 +55,7 @@ function modifyTrickyQuestions(body) {
     labels.forEach(label => {
         if(checkIsTrickQuesiton(label.innerText)) {
             //modifyDoubleNegotionsCheckboxes(label.innerText, inputs[labels.indexOf(label)]);
-            foundPatterns.push("Tricky Questions found");
+            foundPatterns.push("<b>Tricky question</b> found in inputs containing: </br>" + label.innerText.slice(0,45) +"...");
             darkPatternsNumber++;
             markTrickQuestion(label);
             replacableWords.forEach(word => {
@@ -187,7 +187,6 @@ function modifyDoubleNegotionsCheckboxes(label, input) {
             for(secondNegotion of secondPositiveNegotions) {
                 if(sentence.includes(firstNegotion) && sentence.includes(secondNegotion)) {
                     NegotionsFound++;
-                    console.log(input);
                     input.setAttribute("checked", true);
                     return;
                 }

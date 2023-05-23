@@ -17,7 +17,7 @@ async function connect() {
   //add paragraph for each found dark pattern
   for (darkPattern of response.darkPatternsList) {
     var p = document.createElement("p");
-    p.innerText = darkPattern;
+    p.innerHTML = darkPattern;
     listDiv.appendChild(p);
   }
 }

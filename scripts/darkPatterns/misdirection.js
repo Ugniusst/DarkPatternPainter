@@ -1,3 +1,10 @@
+const STYLEMISD = document.createElement('style');
+STYLEMISD.innerHTML = `.borderDP {
+    border: 3px solid red;
+  }`;
+
+document.getElementsByTagName('head')[0].appendChild(STYLEMISD);
+
 var buttonsList = [[]];
 function findInconsistenButtons(body) {
     var divs = body.getElementsByTagName("div");
@@ -13,7 +20,7 @@ function findInconsistenButtons(body) {
                     var buttonStyle = getComputedStyle(buttons[i]);
                     var colorDifference = deltaE(lastButtonStyle['background-color'], buttonStyle['background-color']);
                     if(colorDifference > 50) {
-                        foundPatterns.push("Misdirection found in buttons");
+                        foundPatterns.push("<b>Misdirection</b> found in buttons containing: </br>" + buttons[i].innerText);
                         buttonsList.push(buttons);
                     }
                 }
