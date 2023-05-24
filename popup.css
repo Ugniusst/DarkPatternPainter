@@ -1,12 +1,11 @@
 .switch-toggle {
-    float: left;
     background: #babbbb38;
+    margin-bottom: 15px;
     
  }
  .switch-toggle input {
    position: absolute;
-   opacity: 0;
-   
+   opacity: 0;;
  }
  .switch-toggle input + label {
    padding: 7px;
@@ -15,6 +14,7 @@
    cursor: pointer;
    width: 2.8em;
    text-align: center;
+   background-color: rgb(244, 244, 244);
  }
  .switch-toggle input:checked + label {
    background: rgba(131, 203, 131, 0.915);
@@ -25,3 +25,16 @@
     display: inline-block;
     margin-bottom: 5em;
  }
+ 
+ .DPLabel {
+  font-weight: bold;
+  font-size: 13px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+
+.line {
+  width: 70%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
