@@ -13,8 +13,9 @@ function findInconsistenButtons(body) {
         //if div doesnt have child "div" nodes, then search for buttons
         if(div.getElementsByTagName("div").length == 0) {
             var buttons = div.getElementsByTagName("button");
+            buttons = div.querySelectorAll('button,a')
+            console.log(buttons);
             if(buttons.length > 1) {
-                console.log(buttons);
                 var lastButtonStyle = getComputedStyle(buttons[buttons.length - 1]);
                 for (i = 0; i < buttons.length - 1; i++) {
                     var buttonStyle = getComputedStyle(buttons[i]);
@@ -30,19 +31,18 @@ function findInconsistenButtons(body) {
 }
 function modifyButtonStyles(body) {
     findInconsistenButtons(body);
+    console.log(buttonsList);
     for (buttons of buttonsList) {
         //if one or more buttons exist there, change their style to last button's class.
         if(buttons.length > 1) {
             lastIndex = buttons.length - 1;
             latestClass = buttons[lastIndex].className;
-            if(buttons[lastIndex].hasAttribute("mode")) {
-                latestMode = buttons[lastIndex].getAttribute("mode");
-            }
+            const computedStyle = getComputedStyle(buttons[lastIndex]);
+          
             for (let button of buttons) {
-                button.className = latestClass;
-                if(button.hasAttribute("mode")) {
-                    button.setAttribute("mode", latestMode);
-                }
+                Array.from(computedStyle).forEach(key => 
+                    button.style.setProperty(key, computedStyle.getPropertyValue(key), computedStyle.getPropertyPriority(key)))
+
             }
             
         }

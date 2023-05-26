@@ -91,7 +91,6 @@ function checkIsTrickQuesiton(label) {
         totalScores += _score;
       });  
     return (score / totalScores) > 0.65;
-    return false;
 }
 
 function getInputLabels(body) {
