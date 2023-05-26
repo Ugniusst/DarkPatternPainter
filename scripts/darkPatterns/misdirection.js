@@ -5,7 +5,12 @@ STYLEMISD.innerHTML = `.borderDP {
 
 document.getElementsByTagName('head')[0].appendChild(STYLEMISD);
 
+const GOODCOOKIESKEYWORDS = ["essential", "necessar", "only", "more", "daugiau", "būtin"];
+var GoodCokiesButtonsList = [];
+var GoodCokiesButtonsKeywords = [];
 var buttonsList = [[]];
+
+
 function findInconsistenButtons(body) {
     var divs = body.getElementsByTagName("div");
     //check all divs
@@ -14,15 +19,25 @@ function findInconsistenButtons(body) {
         if(div.getElementsByTagName("div").length == 0) {
             var buttons = div.getElementsByTagName("button");
             buttons = div.querySelectorAll('button,a')
-            console.log(buttons);
             if(buttons.length > 1) {
                 var lastButtonStyle = getComputedStyle(buttons[buttons.length - 1]);
-                for (i = 0; i < buttons.length - 1; i++) {
-                    var buttonStyle = getComputedStyle(buttons[i]);
+                for (button of buttons) {
+                    var buttonStyle = getComputedStyle(button);
                     var colorDifference = deltaE(lastButtonStyle['background-color'], buttonStyle['background-color']);
                     if(colorDifference > 50) {
-                        foundPatterns.push("<b>Misdirection</b> found in buttons containing: </br>" + buttons[i].innerText);
-                        buttonsList.push(buttons);
+                        foundPatterns.push("<b>Misdirection</b> found in buttons containing: </br>" + button.innerText);
+                        var isGoodCookie = false;
+                        GOODCOOKIESKEYWORDS.forEach(keyword => {
+                            if(div.innerText.toLowerCase().includes(keyword)) {
+                                GoodCokiesButtonsKeywords.push(keyword);
+                                GoodCokiesButtonsList.push(buttons);
+                                isGoodCookie = true;
+                            }
+                        });
+                        if(!isGoodCookie) {
+                            buttonsList.push(buttons);
+                        }
+                        break;
                     }
                 }
             }
@@ -31,7 +46,37 @@ function findInconsistenButtons(body) {
 }
 function modifyButtonStyles(body) {
     findInconsistenButtons(body);
-    console.log(buttonsList);
+    for (var goodCookieButtons of GoodCokiesButtonsList) {
+        var goodCookieStyle;
+        var badCookieStyle;
+        for(var goodCookieButton of goodCookieButtons) {
+            var isGoodCookie = false;
+            GOODCOOKIESKEYWORDS.forEach(keyword => {
+                if(goodCookieButton.innerText.toLowerCase().includes(keyword)) {
+                    goodCookieStyle = getComputedStyle(goodCookieButton);
+                    console.log(goodCookieButton);
+                    isGoodCookie = true;
+                }
+            });
+            if(!isGoodCookie) {
+                console.log(goodCookieButton);
+                badCookieStyle = getComputedStyle(goodCookieButton);
+            }
+        }
+        console.log(goodCookieStyle);
+        console.log(badCookieStyle);
+        for(var goodCookieButton of goodCookieButtons) {
+            Array.from(goodCookieStyle).forEach(key => 
+                goodCookieButton.style.setProperty(key, goodCookieStyle.getPropertyValue(key), goodCookieStyle.getPropertyPriority(key)))
+            GOODCOOKIESKEYWORDS.forEach(keyword => {
+                if(goodCookieButton.innerText.toLowerCase().includes(keyword)) {
+                    Array.from(badCookieStyle).forEach(key => 
+                        goodCookieButton.style.setProperty(key, goodCookieStyle.getPropertyValue(key), goodCookieStyle.getPropertyPriority(key)))
+                   
+                }
+            });
+        }
+    }
     for (buttons of buttonsList) {
         //if one or more buttons exist there, change their style to last button's class.
         if(buttons.length > 1) {
@@ -42,7 +87,6 @@ function modifyButtonStyles(body) {
             for (let button of buttons) {
                 Array.from(computedStyle).forEach(key => 
                     button.style.setProperty(key, computedStyle.getPropertyValue(key), computedStyle.getPropertyPriority(key)))
-
             }
             
         }
