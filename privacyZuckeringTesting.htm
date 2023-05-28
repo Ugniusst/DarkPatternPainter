@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Privacy Zuckering</title>
+  <style>
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    
+    .modal-content {
+      background-color: #fefefe;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 25%;
+      text-align: center;
+    }
+
+    .inlineButtons, .inlineButtons > button {
+        display: cell;
+        justify-content: space-around;
+        width: 50%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Privacy Zuckering testing</h1>
+
+  <button id="myBtnContacts">Share Contacts</button>
+  
+  <!-- Modal Window -->
+  <div id="myModalContacts" class="modal">
+    <div class="modal-content">
+        <!-- <span class="close">&times;</span> -->
+        <h2>Text anyone in your contacts</h2>
+        <p>"Company" will continously upload your contacts to connect with your friends</p>
+        <div clas="inlineButtons">
+            <button id="learnMore">Learn more</button>
+            <button id="ok">OK</button>
+        </div>
+    </div>
+  </div>
+  
+  <script>
+    // Get the modal
+    var modal = document.getElementById("myModalContacts");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtnContacts");
+
+    // When the user clicks on the button, open the modal
+    btn.onclick = function() {
+    modal.style.display = "block";
+    }
+
+  </script>
+</body>
+</html>

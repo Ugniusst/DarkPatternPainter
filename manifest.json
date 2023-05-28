@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Dark pattern painter",
     "description": "A demonstational program to find misdirection dark pattern and prevent it",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "content_scripts": [{
         "js": ["scripts/thirdParty/jquery.min.js",
         "scripts/darkPatterns/misdirection.js",

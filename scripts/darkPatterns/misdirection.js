@@ -63,8 +63,6 @@ function modifyButtonStyles(body) {
                 badCookieStyle = getComputedStyle(goodCookieButton);
             }
         }
-        console.log(goodCookieStyle);
-        console.log(badCookieStyle);
         for(var goodCookieButton of goodCookieButtons) {
             Array.from(goodCookieStyle).forEach(key => 
                 goodCookieButton.style.setProperty(key, goodCookieStyle.getPropertyValue(key), goodCookieStyle.getPropertyPriority(key)))
@@ -94,6 +92,7 @@ function modifyButtonStyles(body) {
 
 }
 
+//code from https://stackoverflow.com/a/52453462
 function deltaE(rgbA1, rgbB1) {
     let rgbA = rgbA1.slice(
         rgbA1.indexOf("(") + 1, 
