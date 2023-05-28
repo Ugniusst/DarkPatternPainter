@@ -57,7 +57,7 @@ function findPrivacyZuckeringModal(body) {
     ];
     var divs = body.getElementsByTagName("div");
     for(i = divs.length - 1; i >= 0; i--) {
-        if(divs[i].outerHTML.includes("modal")){
+        if(divs[i].outerHTML.includes("modal") && !divs[i].outerHTML.includes("Privacy Zuckering")){
             var modal = divs[i];
             for (action of KEYWORDSACTIONS) {
                 if(modal.outerHTML.includes(action)) {
@@ -65,6 +65,7 @@ function findPrivacyZuckeringModal(body) {
                         if(modal.outerHTML.includes(object) && !(modal.innerText.includes("NO") || modal.innerText.includes("Close")))  {
                             foundPatterns.push("<b>Privacy Zuckering</b> found in modal containing: </br>" + divs[i].innerText.slice(0,45) +"...");
                             divs[i].innerHTML = `<span class='closePZ'>--Privacy Zuckering--</span>` + divs[i].innerHTML;
+                            divs[i].parentElement.innerHTML = `<span class='closePZ'>--Privacy Zuckering--</span>` + divs[i].parentElement.innerHTML;
                             // divs[i].setAttribute("style", "border: 2px solid red;");
                             break;
                         }
