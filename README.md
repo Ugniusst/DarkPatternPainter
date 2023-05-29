@@ -6,7 +6,7 @@ Plėtinys leidžia vartotojui pasirinkti, kokius apgaulingo dizaino tipus aptikt
 # Plėtinio įrašymo instrukcija:
 
 1. Atsisųsti projektą ZIP failu ir išarchyvuoti.
-2. Naršyklėje įvesti adresą chrome://extensions/ ir įjungti „Developer Mode“ (Mygtukas randamas virušutiniame dešiniam kampe.
+2. Naršyklėje įvesti adresą chrome://extensions/ ir įjungti „Developer Mode“ (Mygtukas randamas virušutiniame dešiniajame kampe.
 
 ![image](https://github.com/Ugniusst/DarkPatternPainter/assets/71493945/1a8dadb6-c7a1-4183-ac45-ae1388140ce8)
 
