@@ -16,4 +16,4 @@ Plėtinys leidžia vartotojui pasirinkti, kokius apgaulingo dizaino tipus aptikt
 ![image](https://github.com/Ugniusst/DarkPatternPainter/assets/71493945/e9f7f69f-c129-4cc5-9b13-48fac99bd73a)
 
 
-4. Plėtinys įrašymas, jį pasiekti galima per plėtinių langą.
+4. Plėtinys įrašytas, jį pasiekti galima per plėtinių langą.
